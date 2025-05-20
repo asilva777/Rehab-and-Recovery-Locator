@@ -85,13 +85,61 @@
         validity: "01/01/2022 - 12/31/2024",
         lat: 14.6725,
         lng: 120.5361
+      },
+      {
+        region: "CALABARZON",
+        province: "Cavite",
+        city: "Imus",
+        name: "San Gabriel Recovery and Treatment Center",
+        address: "Barangay Langkaan",
+        director: "Mr. Reynaldo Tan",
+        capacity: "100 (Male & Female)",
+        ownership: "PO",
+        modality: "Medical & Psychosocial",
+        contact: "0917-1234567",
+        email: "san.gabriel.rehab@gmail.com",
+        validity: "01/01/2021 - 12/31/2023",
+        lat: 14.4347,
+        lng: 120.9369
+      },
+      {
+        region: "Western Visayas",
+        province: "Iloilo",
+        city: "Iloilo City",
+        name: "Hope Recovery Center",
+        address: "Brgy. San Jose",
+        director: "Ms. Angela Cruz",
+        capacity: "80 (Male & Female)",
+        ownership: "PO",
+        modality: "Therapeutic Community",
+        contact: "0998-7654321",
+        email: "hope.center@yahoo.com",
+        validity: "01/06/2021 - 12/31/2023",
+        lat: 10.7202,
+        lng: 122.5621
+      },
+      {
+        region: "Davao Region",
+        province: "Davao del Sur",
+        city: "Digos City",
+        name: "New Life Rehabilitation Center",
+        address: "Poblacion, Digos",
+        director: "Dr. Mario Reyes",
+        capacity: "120 (Male)",
+        ownership: "GO",
+        modality: "Medical",
+        contact: "0939-8765432",
+        email: "newlife.digos@gmail.com",
+        validity: "01/03/2020 - 12/31/2022",
+        lat: 6.7500,
+        lng: 125.3500
       }
-      // Add more centers here
+      // Add more centers here in the same format
     ];
 
     const map = L.map('map').setView([12.8797, 121.7740], 6);
 
-    // Tile layer
+    // Add OpenStreetMap tile layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
@@ -105,7 +153,11 @@
       filteredData.forEach(center => {
         const popupContent = `
           <strong>${center.name}</strong><br>
-          ${center.address}<br>
+          <em>Director:</em> ${center.director}<br>
+          ${center.address}, ${center.city}, ${center.province}<br>
+          <em>Capacity:</em> ${center.capacity}<br>
+          <em>Ownership:</em> ${center.ownership}<br>
+          <em>Modality:</em> ${center.modality}<br>
           <em>Contact:</em> ${center.contact}<br>
           <em>Email:</em> ${center.email}<br>
           <em>Validity:</em> ${center.validity}
@@ -136,6 +188,7 @@
     document.getElementById("provinceInput").addEventListener("input", filterAndUpdate);
     document.getElementById("cityInput").addEventListener("input", filterAndUpdate);
 
+    // Load all centers initially
     addMarkers(rehabCenters);
   </script>
 </body>
